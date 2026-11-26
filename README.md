@@ -1,6 +1,6 @@
 # The Koszul Roller Coaster conjecture
 
-Fix any field and any socle degree $d\ge3$. Every prescribed strict ordering of $H_1,\ldots,H_{\lfloor d/2\rfloor}$ occurs as the Hilbert function entries of a standard graded Artinian Gorenstein algebra admitting a quadratic Gröbner basis. Such an algebra is Koszul. Holleben and Nicklasson posed this existence statement for sufficiently large $d$ in Conjecture 5.8. [Published conjecture](https://doi.org/10.1016/j.jpaa.2026.108238) · [Full written proof](notes/roller-coaster.md)
+**Lean 4 verifies Holleben and Nicklasson’s Conjecture 5.8.** Over every field and in every socle degree $d\ge3$, there is a standard graded Artinian Gorenstein Koszul algebra whose Hilbert function entries $H_1,\ldots,H_{\lfloor d/2\rfloor}$ occur in any prescribed strict order. The paper asks for sufficiently large $d$. [Final Lean theorem](Conjectures/RollerConjecture.lean) · [Published conjecture, §5](https://arxiv.org/html/2502.00155v2#S5) · [Written proof](notes/roller-coaster.md)
 
 For example, take a complex with five color classes of five vertices each, where a face uses each color at most once. Its face polynomial is $(1+5x)^5$. The resulting degree-six algebra has Hilbert function
 
@@ -14,7 +14,9 @@ The middle entry falls below even the degree-one entry. The general construction
 
 The proof constructs a positive combination of face-count vectors with a constant contribution in every interior degree. An invertible triangular matrix then lets us adjust the first-half coefficients independently. Disjoint unions of complete multipartite graphs realize the required face counts after a common rescaling.
 
-Lean 4.19 verifies the construction for all permutations, the actual finite face counts, and the shelling criterion for the colored complex. The written proof obtains the algebra and its quadratic Gröbner basis by applying D’Alì and Venturello’s published theorem. That algebraic theorem and its application are outside the Lean formalization. [Formal theorem](Conjectures/RollerFaces.lean) · [Shelling proof](Conjectures/RollerShelling.lean) · [Published algebra theorem, §8](https://arxiv.org/html/2106.05051v2#S8)
+The Lean proof builds the algebra, computes the dimensions of its homogeneous pieces, and identifies its top piece with the one-dimensional socle. It proves Koszulness by showing that the normalized bar cohomology of the residue field vanishes off the diagonal. The bar differential uses multiplication in the constructed algebra. The axiom audit on the final theorem permits only Lean’s standard axioms of propositional extensionality, classical choice and quotient soundness. [Algebra and Hilbert function](Conjectures/RollerAlgebraRealization.lean) · [Bar differential on the actual algebra](Conjectures/RollerKoszulAugmentation.lean) · [Koszul filtration](Conjectures/RollerWhiskeredKoszul.lean) · [Axiom audit](Audit.lean)
+
+The written proof also derives a quadratic Gröbner basis from a theorem of D’Alì and Venturello. That stronger assertion is outside the Lean theorem for Conjecture 5.8. [Published Gröbner basis theorem, §8](https://arxiv.org/html/2106.05051v2#S8)
 
 From a checkout with the pinned Lean toolchain, run
 

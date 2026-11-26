@@ -1,2 +1,3 @@
-import Conjectures.RollerFaces
-import Conjectures.RollerShelling
+import Conjectures.RollerConjecture
+import Conjectures.RollerFaceRingPresentation
+import Conjectures.RollerGorensteinFaces
